@@ -44,4 +44,4 @@ mongoose
     process.exit(1);
   });
 
-  export { app };
+export default app; // ✅ only export app, don’t call app.listen()
