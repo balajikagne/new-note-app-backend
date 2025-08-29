@@ -39,7 +39,7 @@ export async function verifyOtp(req: Request, res: Response) {
  console.log(email, code);
   if (!email || !code) return res.status(400).json({ message: "Missing email or code" });
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }) as mongoose.Document & { _id: mongoose.Types.ObjectId, email: string, name?: string, dob?: string };
   if (!user) return res.status(400).json({ message: "User not found" });
 
   const otp = await OTP.findOne({ user: user._id, code });
